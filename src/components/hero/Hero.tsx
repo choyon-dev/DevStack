@@ -16,10 +16,10 @@ export default function Hero() {
             side by side, and put together the stack that fits your next project.
           </p>
           <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-            <button className="w-full sm:w-auto bg-linear-to-r from-[#D91B7E] to-[#990F52] hover:opacity-90 transition-opacity text-white py-3 px-7 rounded-4xl font-medium cursor-pointer">
+            <button className="w-full sm:w-auto bg-linear-to-r from-[#D91B7E] to-[#990F52] hover:opacity-90 transition-opacity text-white py-3 px-7 rounded-xl font-medium cursor-pointer">
               Explore Technologies
             </button>
-            <button className="w-full sm:w-auto border border-neutral-700 hover:border-black transition-colors py-3 px-7 rounded-4xl font-medium cursor-pointer">
+            <button className="w-full sm:w-auto border border-neutral-700 hover:border-black transition-colors py-3 px-7 rounded-xl font-medium cursor-pointer">
               Learn More
             </button>
           </div>

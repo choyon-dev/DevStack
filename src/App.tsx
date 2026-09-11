@@ -1,3 +1,4 @@
+import Footer from "./components/footer/Footer";
 import Hero from "./components/hero/Hero";
 import { Header } from "./components/nav/Header";
 import Stack from "./components/stack/Stack";
@@ -17,6 +18,7 @@ function App() {
       <Header />
       <Hero />
       <Stack techPromise={techPromise} />
+      <Footer />
     </>
   );
 }

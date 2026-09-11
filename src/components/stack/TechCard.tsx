@@ -43,20 +43,15 @@ export default function TechCard({
       <button
         onClick={() => onAddToStack(tech)}
         disabled={isAdded}
-        className={`mt-5 w-full py-2.5 px-4 text-sm font-medium rounded-xl transition flex items-center justify-center gap-2 ${
-          isAdded
+        className={`mt-5 w-full py-2.5 px-4 text-sm font-medium rounded-xl transition flex items-center justify-center gap-2 ${isAdded
             ? "bg-[#D61E7F] text-white cursor-not-allowed opacity-95"
             : "bg-[#0F172A] hover:bg-black text-white cursor-pointer"
-        }`}
+          }`}
       >
         {isAdded ? (
           <>
             <FiCheck className="text-base" />
-            <span>Added to Stack</span>
-          </>
-        ) : (
-          "Add to Stack"
-        )}
+            <span>Added to Stack</span></>) : ("Add to Stack")}
       </button>
     </div>
   );
