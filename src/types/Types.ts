@@ -12,6 +12,7 @@ export interface Technology {
 export interface TechCardProps {
   tech: Technology;
   onAddToStack: (tech: Technology) => void;
+  isAdded: boolean;
 }
 
 export interface StackProps {
@@ -21,4 +22,5 @@ export interface StackProps {
 export interface TechGridProps {
   techPromise: Promise<Technology[]>;
   onAddToStack: (tech: Technology) => void;
+  selectedStacks: Technology[];
 }

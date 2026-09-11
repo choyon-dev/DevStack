@@ -1,6 +1,11 @@
+import { FiCheck } from "react-icons/fi";
 import type { TechCardProps } from "../../types/Types";
 
-export default function TechCard({ tech, onAddToStack }: TechCardProps) {
+export default function TechCard({
+  tech,
+  onAddToStack,
+  isAdded,
+}: TechCardProps) {
   return (
     <div className="bg-white border border-neutral-200/80 rounded-2xl p-5 flex flex-col justify-between shadow-xs hover:shadow-md transition">
       <div>
@@ -12,7 +17,7 @@ export default function TechCard({ tech, onAddToStack }: TechCardProps) {
               className="w-8 h-8 object-contain"
             />
           </div>
-          <span className="text-xs px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-600 border border-blue-100 font-medium">
+          <span className="text-xs px-2.5 py-0.5 rounded-full bg-[#fbe8f2] text-[#D73387] font-medium">
             {tech.badge}
           </span>
         </div>
@@ -37,9 +42,21 @@ export default function TechCard({ tech, onAddToStack }: TechCardProps) {
 
       <button
         onClick={() => onAddToStack(tech)}
-        className="mt-5 w-full py-2.5 px-4 bg-[#0F172A] hover:bg-black text-white text-sm font-medium rounded-xl transition cursor-pointer"
+        disabled={isAdded}
+        className={`mt-5 w-full py-2.5 px-4 text-sm font-medium rounded-xl transition flex items-center justify-center gap-2 ${
+          isAdded
+            ? "bg-[#D61E7F] text-white cursor-not-allowed opacity-95"
+            : "bg-[#0F172A] hover:bg-black text-white cursor-pointer"
+        }`}
       >
-        Add to Stack
+        {isAdded ? (
+          <>
+            <FiCheck className="text-base" />
+            <span>Added to Stack</span>
+          </>
+        ) : (
+          "Add to Stack"
+        )}
       </button>
     </div>
   );

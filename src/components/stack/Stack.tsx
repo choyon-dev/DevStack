@@ -6,6 +6,10 @@ export default function Stack({ techPromise }: StackProps) {
   const [selectedStacks, setSelectedStacks] = useState<Technology[]>([]);
 
   const handleAddToStack = (tech: Technology) => {
+    const isAlreadyAdded = selectedStacks.some((item) => item.id === tech.id);
+    if (isAlreadyAdded) {
+      return;
+    }
     setSelectedStacks([...selectedStacks, tech]);
   };
 
@@ -42,7 +46,11 @@ export default function Stack({ techPromise }: StackProps) {
                 </div>
               }
             >
-              <TechGrid techPromise={techPromise} onAddToStack={handleAddToStack} />
+              <TechGrid
+                techPromise={techPromise}
+                onAddToStack={handleAddToStack}
+                selectedStacks={selectedStacks}
+              />
             </Suspense>
           </div>
 
