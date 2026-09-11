@@ -1,8 +1,8 @@
-import Logo from '../assets/logo-text.png'
+import Logo from '../../assets/logo-text.png'
 export function DeskHeader() {
     
     return (
-        <div className="flex items-center justify-center py-3.5 border-b border-b-[0.5px] border-black/5">
+        <div className="flex items-center justify-center py-3.5 border-b-[0.5px] border-black/5">
     <div className="flex justify-between container">
         <div><img src={Logo} alt="header logo" /></div>
 

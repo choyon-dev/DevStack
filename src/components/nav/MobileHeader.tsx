@@ -1,10 +1,10 @@
 
-import Logo from '../assets/logo-text.png'
+import Logo from '../../assets/logo-text.png'
 import { GiHamburgerMenu } from "react-icons/gi";
 export function MobileHeader(){
     return (
 
-        <div className="flex items-center justify-center gap-7 py-2.5 border-b border-b-[0.5px] border-black/5">
+        <div className="flex items-center justify-center gap-7 py-2.5 border-b-[0.5px] border-black/5">
         <div><GiHamburgerMenu size={25}/> </div>
         <div><img src={Logo} alt="tablogo" /></div>
         <div className='flex gap-2.5 items-center'>
