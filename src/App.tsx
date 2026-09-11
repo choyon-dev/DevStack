@@ -1,18 +1,24 @@
-import Hero from "./components/hero/Hero"
-import { Header } from "./components/nav/Header"
-import Stack from "./components/stack/Stack"
+import Hero from "./components/hero/Hero";
+import { Header } from "./components/nav/Header";
+import Stack from "./components/stack/Stack";
+import type { Technology } from "./types/Types";
 
+const techFetch = async (): Promise<Technology[]> => {
+  const res = await fetch("/data.json");
+  const data = await res.json();
+  return data;
+};
+
+const techPromise = techFetch();
 
 function App() {
-
   return (
     <>
-     <Header></Header>
-     <Hero></Hero>
-     <Stack></Stack>
-    
+      <Header />
+      <Hero />
+      <Stack techPromise={techPromise} />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
