@@ -1,4 +1,5 @@
 import { Suspense, useState } from "react";
+import { toast } from "react-toastify";
 import TechGrid from "./TechGrid";
 import type { StackProps, Technology } from "../../types/Types";
 
@@ -8,17 +9,22 @@ export default function Stack({ techPromise }: StackProps) {
   const handleAddToStack = (tech: Technology) => {
     const isAlreadyAdded = selectedStacks.some((item) => item.id === tech.id);
     if (isAlreadyAdded) {
+      toast.warning(`${tech.name} is already in your stack!`);
       return;
     }
     setSelectedStacks([...selectedStacks, tech]);
+    toast.success(`${tech.name} added to your stack!`);
   };
 
-  const handleRemoveFromStack = (id: string) => {
-    setSelectedStacks(selectedStacks.filter((item) => item.id !== id));
+  const handleRemoveFromStack = (tech: Technology) => {
+    setSelectedStacks(selectedStacks.filter((item) => item.id !== tech.id));
+    toast.info(`${tech.name} removed from your stack!`);
   };
 
   const handleRemoveAll = () => {
+    if (selectedStacks.length === 0) return;
     setSelectedStacks([]);
+    toast.error("Removed all technologies from your stack!");
   };
 
   return (
@@ -66,7 +72,7 @@ export default function Stack({ techPromise }: StackProps) {
               </div>
             ) : (
               <>
-                <div className="flex flex-col gap-3 mt-5 max-h-[380px] overflow-y-auto pr-1">
+                <div className="flex flex-col gap-3 mt-5 max-h-95 overflow-y-auto pr-1">
                   {selectedStacks.map((item) => (
                     <div
                       key={item.id}
@@ -86,7 +92,7 @@ export default function Stack({ techPromise }: StackProps) {
                         </div>
                       </div>
                       <button
-                        onClick={() => handleRemoveFromStack(item.id)}
+                        onClick={() => handleRemoveFromStack(item)}
                         className="text-neutral-400 hover:text-red-500 text-sm font-bold p-1 cursor-pointer transition"
                       >
                         ✕

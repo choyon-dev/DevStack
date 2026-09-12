@@ -1,3 +1,5 @@
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Footer from "./components/footer/Footer";
 import Hero from "./components/hero/Hero";
 import { Header } from "./components/nav/Header";
@@ -19,6 +21,7 @@ function App() {
       <Hero />
       <Stack techPromise={techPromise} />
       <Footer />
+      <ToastContainer position="bottom-right" autoClose={2000} />
     </>
   );
 }
