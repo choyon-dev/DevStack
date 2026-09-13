@@ -1,32 +1,14 @@
-import { Suspense, useState } from "react";
-import { toast } from "react-toastify";
+import { Suspense } from "react";
 import TechGrid from "./TechGrid";
-import type { StackProps, Technology } from "../../types/Types";
+import type { StackProps } from "../../types/Types";
 
-export default function Stack({ techPromise }: StackProps) {
-  const [selectedStacks, setSelectedStacks] = useState<Technology[]>([]);
-
-  const handleAddToStack = (tech: Technology) => {
-    const isAlreadyAdded = selectedStacks.some((item) => item.id === tech.id);
-    if (isAlreadyAdded) {
-      toast.warning(`${tech.name} is already in your stack!`);
-      return;
-    }
-    setSelectedStacks([...selectedStacks, tech]);
-    toast.success(`${tech.name} added to your stack!`);
-  };
-
-  const handleRemoveFromStack = (tech: Technology) => {
-    setSelectedStacks(selectedStacks.filter((item) => item.id !== tech.id));
-    toast.info(`${tech.name} removed from your stack!`);
-  };
-
-  const handleRemoveAll = () => {
-    if (selectedStacks.length === 0) return;
-    setSelectedStacks([]);
-    toast.error("Removed all technologies from your stack!");
-  };
-
+export default function Stack({
+  techPromise,
+  selectedStacks,
+  onAddToStack,
+  onRemoveFromStack,
+  onRemoveAll,
+}: StackProps) {
   return (
     <section className="w-full py-12">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -54,13 +36,13 @@ export default function Stack({ techPromise }: StackProps) {
             >
               <TechGrid
                 techPromise={techPromise}
-                onAddToStack={handleAddToStack}
+                onAddToStack={onAddToStack}
                 selectedStacks={selectedStacks}
               />
             </Suspense>
           </div>
 
-          <div className="w-full lg:w-[320px] shrink-0 bg-white border border-neutral-200/80 rounded-2xl p-6 shadow-xs sticky top-6">
+          <div className="hidden lg:block w-[320px] shrink-0 bg-white border border-neutral-200/80 rounded-2xl p-6 shadow-xs sticky top-24">
             <h3 className="text-lg font-bold text-neutral-900">Your Stack</h3>
             <p className="text-xs text-neutral-500 mt-1">
               {selectedStacks.length} Technology Selected
@@ -72,7 +54,7 @@ export default function Stack({ techPromise }: StackProps) {
               </div>
             ) : (
               <>
-                <div className="flex flex-col gap-3 mt-5 max-h-95 overflow-y-auto pr-1">
+                <div className="flex flex-col gap-3 mt-5 max-h-[380px] overflow-y-auto pr-1">
                   {selectedStacks.map((item) => (
                     <div
                       key={item.id}
@@ -92,7 +74,7 @@ export default function Stack({ techPromise }: StackProps) {
                         </div>
                       </div>
                       <button
-                        onClick={() => handleRemoveFromStack(item)}
+                        onClick={() => onRemoveFromStack(item)}
                         className="text-neutral-400 hover:text-red-500 text-sm font-bold p-1 cursor-pointer transition"
                       >
                         ✕
@@ -102,7 +84,7 @@ export default function Stack({ techPromise }: StackProps) {
                 </div>
 
                 <button
-                  onClick={handleRemoveAll}
+                  onClick={onRemoveAll}
                   className="mt-5 w-full py-2.5 border border-red-200 text-red-500 hover:bg-red-50 rounded-xl text-sm font-medium transition cursor-pointer"
                 >
                   Remove All
